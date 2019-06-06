@@ -28,9 +28,9 @@ function checkInput(input){// возвращает true или false
 	var number = true;
 	var phone = true;
 
-	if (input.dataset.required){
+	if (input.dataset.hasOwnProperty('required')){
 		//проверка на заполнение
-		if (input.value.length === 0){return false}
+		if (input.value.length === 0){empty = false}
 	}
 
 	if (input.dataset.validator){
@@ -38,15 +38,15 @@ function checkInput(input){// возвращает true или false
 
 		if (input.dataset.validator === 'letters'){
 			//провкрка на текст
-				if (input.value.length === 0){return false}
-				var reg=/^[а-яА-ЯёЁa-zA-Z]+$/;
+				if (empty === true && input.value.length === 0){return true}
+				var reg=/^[а-яА-ЯёЁa-zA-Z]+$/;//^[а-яА-ЯёЁa-zA-Z]+$, /[a-zа-я]/g
 				leter = reg.test(input.value);
 			}
 			
 		if (input.dataset.validator === 'number'){
 			//проверка на цыфры
-			if (input.value.length === 0){return false}
-			var reg = /^[0-9]+$/;
+			if (empty === true && input.value.length === 0){return true}
+			var reg = /^[0-9+-]+$/;//^[0-9]+$
 			var ofNum = reg.test(input.value) 
 			var max = true;
 			var min = true;
@@ -58,9 +58,9 @@ function checkInput(input){// возвращает true или false
 			}
 			number = ofNum && max && min;
 		}
-			if (input.dataset.validator === 'regexp'){
+			if (empty === true && input.dataset.validator === 'regexp'){
 				//проверка на шаблон
-			if (input.value.length === 0){return false}
+			if (input.value.length === 0){return true}
 				phone = new RegExp(input.dataset.validatorPattern).test(input.value)
 			}
 
