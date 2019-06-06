@@ -80,11 +80,13 @@ function handlerSubmit (event){
 	var self = this;
 	var inputs = Array.from(document.querySelectorAll('input'));
 	//проверили импуты
-	inputs.forEach(function(input){
-		if (!checkInput(input)){
-			input.classList.add(settings.inputErrorClass)
+	for (var i = 0; i<inputs.length; i++){
+		if (!checkInput(inputs[i])){
+			inputs[i].classList.add(settings.inputErrorClass)
+			break;// после первой ошибки заканчиваем проверять другие поля
 		}
-	});
+	}
+	
 // посчитали ошибочные
 	var countErr = 0;
 	inputs.forEach(function(input){
