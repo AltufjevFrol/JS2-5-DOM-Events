@@ -39,14 +39,14 @@ function checkInput(input){// возвращает true или false
 		if (input.dataset.validator === 'letters'){
 			//провкрка на текст
 				if (empty === true && input.value.length === 0){return true}
-				var reg=/^[а-яА-ЯёЁa-zA-Z]+$/;//^[а-яА-ЯёЁa-zA-Z]+$, /[a-zа-я]/g
+				var reg=/^[а-яА-ЯёЁa-zA-Z]+$/;
 				leter = reg.test(input.value);
 			}
 			
 		if (input.dataset.validator === 'number'){
 			//проверка на цыфры
 			if (empty === true && input.value.length === 0){return true}
-			var reg = /^[0-9+-]+$/;//^[0-9]+$
+			var reg = /^[0-9+-]+$/;
 			var ofNum = reg.test(input.value) 
 			var max = true;
 			var min = true;
